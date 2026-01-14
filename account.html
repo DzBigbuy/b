@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حسابي - DzBigbuy</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-storage-compat.js"></script>
+</head>
+<body id="account-page-body">
+    <header class="header">
+        <div class="container">
+            <div class="header-main">
+                <div class="logo-wrapper">
+                    <a href="index.html" class="logo">DzBigbuy</a>
+                    <span class="tagline">موقع الوساطة الأول<br>في الجزائر</span>
+                </div>
+                <div id="auth-container">
+                    <!-- This will be populated by script.js -->
+                </div>
+            </div>
+            <nav class="navigation">
+                <a href="trader-ads.html">إعلانات<br>التجار</a>
+                <a href="marketer-ads.html">إعلانات<br>المسوقين</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- حاوية الإشعارات -->
+    <div id="toast-container" class="toast hidden"></div>
+
+    <main class="container" style="padding-top: 2rem; padding-bottom: 2rem;">
+        
+        <div class="account-tabs">
+          <button class="tab-btn" data-tab="profile">
+            📚<br>
+            <span>ملفي الشخصي</span>
+          </button>
+
+          <button class="tab-btn" data-tab="ads">
+            📢<br>
+            <span>إعلاناتي</span>
+          </button>
+
+          <button class="tab-btn" data-tab="messages" id="messagesTab" style="position: relative;">
+            📩<br>
+            <span>الرسائل</span>
+            <span class="notif-badge" id="msgBadge">0</span>
+          </button>
+        </div>
+
+        <!-- المحتويات -->
+        <div class="tab-content" id="profile">
+            <div class="account-card" style="margin-bottom: 0;">
+                 <h2>ملفي الشخصي</h2>
+                <dl class="profile-grid">
+                    <div>
+                        <dt>الاسم:</dt>
+                        <dd id="profile-name">جاري التحميل...</dd>
+                    </div>
+                     <div>
+                        <dt>البريد الإلكتروني:</dt>
+                        <dd id="profile-email">جاري التحميل...</dd>
+                    </div>
+                     <div>
+                        <dt>نوع الحساب:</dt>
+                        <dd id="profile-usertype">جاري التحميل...</dd>
+                    </div>
+                    <div>
+                        <dt>عضو منذ:</dt>
+                        <dd id="profile-since">جاري التحميل...</dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+
+        <div class="tab-content" id="ads">
+            <div class="account-card" style="margin-bottom: 0;">
+                 <h2>إعلاناتي</h2>
+                <div class="table-container">
+                    <table class="activity-table">
+                        <thead>
+                            <tr>
+                                <th>العنوان</th>
+                                <th>السعر</th>
+                                <th>تاريخ النشر</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="user-ads-tbody">
+                            <!-- User's ads will be populated here as table rows -->
+                        </tbody>
+                    </table>
+                </div>
+                 <div id="user-ads-placeholder">
+                    <!-- Placeholder will be shown here if table is empty -->
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="messages">
+             <div class="account-card" style="margin-bottom: 0;">
+                <h2 class="table-main-title">صندوق الوارد</h2>
+                <div id="inbox-container">
+                    <!-- Messages will be populated here by script.js -->
+                </div>
+                <div id="user-messages-placeholder">
+                    <!-- Placeholder will be shown here if the container is empty -->
+                </div>
+             </div>
+        </div>
+        
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 DzBigbuy. جميع الحقوق محفوظة. <a href="admin.html" style="color: var(--muted-foreground);">معلومات</a></p>
+        </div>
+    </footer>
+    
+    <audio id="msgSound" style="display: none;">
+      <source src="https://firebasestorage.googleapis.com/v0/b/studio-7316459997-f5ae3.appspot.com/o/assets%2Fnotification.mp3?alt=media&token=c1c8c5c3-0498-4a57-8898-15494c39832d" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
